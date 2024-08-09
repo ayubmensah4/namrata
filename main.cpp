@@ -9,13 +9,13 @@
 
 class WordCounter {
 public:
-    // Constructor just reads the file and prepares everything
+    // call function to read the file and store words
     WordCounter() {
         processFile();
         prepareWordList();
     }
 
-    // Function to save word counts to "output.txt"
+    //Saves word counts to "output.txt"
     void writeWordCounts() const {
         std::ofstream outFile("output.txt");
         for (const auto& word : sortedWords) {
@@ -23,9 +23,9 @@ public:
         }
     }
 
-    // Function to save word occurrences with line numbers to "lines_output.txt"
+    // Saves word occurrences with line numbers to "output_lines.txt"
     void writeWordOccurrences() const {
-        std::ofstream outFile("lines_output.txt");
+        std::ofstream outFile("output_lines.txt");
         for (const auto& word : wordLines) {
             outFile << word.first << ": ";
             bool first = true;
@@ -39,12 +39,12 @@ public:
     }
 
 private:
-    std::string inputFile = "input.txt";  // Just use a fixed file name
+    std::string inputFile = "input.txt"; 
     std::map<std::string, int> wordCounts;
     std::map<std::string, std::set<int>> wordLines;
     std::vector<std::pair<std::string, int>> sortedWords;
 
-    // Read and process the file
+    // Read the file
     void processFile() {
         std::ifstream inFile(inputFile);
         std::string line;
